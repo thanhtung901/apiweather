@@ -1,5 +1,5 @@
 import cherrypy
-from WeatherData import WeatherData
+from api_weather import getWeather
 class WeatherDashboardHTML:
     def __init__(self, currentWeather):
         self.currentWeather = currentWeather
@@ -34,30 +34,30 @@ margin: 10px;
 <br/>
 <div class="card">
 <div class="card-header">
-<h3>Weather Conditions for """ + self.currentWeather.getCity() + """
+<h3>Weather Conditions for """ + self.currentWeather.get_city() + """
 </h3></div>
 <div class="card-body">
 <div class="row">
 <div class="col element-box">
 <h5>Temperature</h5>
-<p>""" + self.currentWeather.getTemperature() + """</p>
+<p>""" + self.currentWeather.get_temperature() + """</p>
 </div>
 <div class="col element-box">
 <h5>Conditions</h5>
-<p>""" + self.currentWeather.getWeatherConditions() + """</p>
+<p>""" + self.currentWeather.get_condition() + """</p>
 </div>
 <div class="col element-box">
 <h5>Wind Speed</h5>
-<p>""" + self.currentWeather.getWindSpeed() + """</p>
+<p>""" + self.currentWeather.get_wind() + """</p>
 </div>
 </div>
 </div>
-<div class="card-footer"><p>""" + self.currentWeather.getTime() + """</p></div>
+<div class="card-footer"><p>""" + self.currentWeather.get_time() + """</p></div>
 </div>
 </div>
 </body>
 </html>
 """
 if __name__=="__main__":
-    currentWeather = WeatherData('Paris')
+    currentWeather = getWeather('Paris')
     cherrypy.quickstart(WeatherDashboardHTML(currentWeather))
