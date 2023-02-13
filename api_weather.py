@@ -11,11 +11,11 @@ class getWeather():
     def __init__(self, city):
         apiUrl = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid=c55cad7bdd0e7d82b0b958fdfd7ceeae"
         json_data = requests.get(apiUrl).json()
-        self.condition = json_data['weather'][0]['main']
-        self.temperature = int(json_data['main']['temp'] - 273.15)
-        self.wind = json_data['wind']['speed']
-        self.city = city
-        self.time = datetime.datetime.now()
+        self.condition = str(json_data['weather'][0]['main'])
+        self.temperature = str(json_data['main']['temp'] - 273.15)
+        self.wind = str(json_data['wind']['speed'])
+        self.city = str(city)
+        self.time = str(datetime.datetime.now())
     def get_condition(self):
         return self.condition
     def get_city(self):
